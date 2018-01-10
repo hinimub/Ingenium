@@ -1,0 +1,31 @@
+{
+  "timeZone": "Asia/Calcutta",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "FusionTables",
+      "serviceId": "fusiontables",
+      "version": "v2"
+    }],
+    "libraries": [{
+      "userSymbol": "railway",
+      "libraryId": "1cxNy4oQekOgLanVjFPiuMFQoW93QwLioDbdqpBmqneX7hwxoScXx_BON",
+      "version": "1",
+      "developmentMode": true
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/gmail.addons.execute", "https://www.googleapis.com/auth/fusiontables.readonly", "https://www.googleapis.com/auth/script.external_request"],
+  "gmail": {
+    "name": "Ingenium",
+    "logoUrl": "http://drive.google.com/uc?export=view&id=1_S8w3z76Jti5x11CZ7bNpgwNTXbM4ICz",
+    "contextualTriggers": [{
+      "unconditional": {
+      },
+      "onTriggerFunction": "buildAddOn"
+    }],
+    "primaryColor": "#4285F4",
+    "secondaryColor": "#4285F4",
+    "openLinkUrlPrefixes": ["https://mail.google.com/"],
+    "version": "TRUSTED_TESTER_V2"
+  }
+}

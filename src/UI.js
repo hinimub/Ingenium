@@ -1,7 +1,6 @@
 var train = CardService.newTextInput()
   .setFieldName('train')
   .setTitle('Train No.');
-//  .setSuggestionsAction(CardService.newAction().setFunctionName('suggestTrain'));
   
   var source = CardService.newTextInput()
   .setFieldName('source')
