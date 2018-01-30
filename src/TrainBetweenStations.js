@@ -4,21 +4,14 @@ function buildTrainBetweenStations (e) {
     source,
     dest,
     date,
-    submit('submitTrainBetweenStations')
+    btnSubmit('between')
   );
   return buildParentCard('Train Between Stations', widgets);
 }
 
-function submitTrainBetweenStations(e){
-  var ret = railway.trainBetweenStations(e.formInput.source, e.formInput.dest, e.formInput.date);
-  return ret.isFailed ?
-    buildChildCard('Train Between Status', [buildErrorSection(ret.description)]):
-    buildTrainBetweenStationsResult(ret);
-}
-
-function buildTrainBetweenStationsResult(ret) {
+function buildTrainBetweenStationsResult(e) {
   var sections = [];
-  ret.trains.forEach(function(v, i, a){
+  e.trains.forEach(function(v, i, a){
     var text = '';
     text += v.from_station.code + ' ( Dep. ) : ' + v.src_departure_time;
     text += '<br>';
@@ -32,5 +25,5 @@ function buildTrainBetweenStationsResult(ret) {
     sections.push(section);
   });
   
-  return buildChildCard(e.formInput.date + ', ' + e.formInput.source + ' -> ' + e.formInput.dest, sections);
+  return buildChildCard(e.date + ', ' + e.source + ' -> ' + e.dest, sections);
 }

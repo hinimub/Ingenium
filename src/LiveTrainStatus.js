@@ -3,19 +3,12 @@ function buildLiveTrainStatus (e) {
     widgets.push(
       train,
       date,
-      submit('submitLiveTrainStatus')
+      btnSubmit('live')
     );
   return buildParentCard('Live Train Status', widgets);
 }
 
-function submitLiveTrainStatus(e){
-  var ret = railway.liveTrainStatus(e.formInput.train, e.formInput.date);
-  return ret.isFailed ?
-    buildChildCard('Live Train Status', [buildErrorSection(ret.description)]) :
-    buildLiveTrainStatusResult(ret);
-}
-
-function buildLiveTrainStatusResult(ret) {
+function buildLiveTrainStatusResult(inputs, ret) {
   var sections = [];
   ret.route.forEach(function(v, i, a){
     var text = '';

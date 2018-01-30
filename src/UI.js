@@ -36,12 +36,14 @@ var train = CardService.newTextInput()
     .addItem('Premium Tatkal', 'PT', false)
     .addItem('Foreign Tourist', 'FT', false);
 
-var submit = function (functionName) {
+var btnSubmit = function (page) {
   return CardService.newTextButton()
      .setText('Submit')
-     .setOnClickAction(CardService.newAction().
-                       setFunctionName(functionName));
-}
+     .setOnClickAction(CardService.newAction()
+                       .setFunctionName('submit')
+                       .setParameters({mode:page}));
+};
+
 
 function addMenu(card){
   actions.forEach(function(v,i,a){

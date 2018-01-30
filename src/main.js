@@ -4,6 +4,8 @@ var actions =
       'Live Train Status',
       'Seat Availability',
       'Train Between Stations',
+      'Fare Enquiry',
+      'Settings'
     ].map(function(e){
       var hash = {};
       hash.text = e;

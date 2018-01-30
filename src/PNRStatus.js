@@ -3,28 +3,32 @@ function buildPNRStatus(e) {
   var pnr = CardService.newTextInput()
     .setTitle('PNR No.')
     .setFieldName('pnr');
-
+  
   widgets.push(
     pnr,
-    submit('submitPNRStatus')
+    btnSubmit('pnr')
   );
   
   return buildParentCard('PNR Status', widgets);
 }
 
-function submitPNRStatus(e){
-  var ret = railway.pnrStatus(e.formInput.pnr);
-  return ret.isFailed ?
-    buildChildCard('PNR Status', [buildErrorSection(ret.description)]) :
-    buildPNRStatusResult(ret);
-}
-
-function buildPNRStatusResult(ret) {
+function buildPNRStatusResult(inputs, ret) {
   var sections = [];
   var train = CardService.newCardSection()
     .setHeader('Train')
-    .addWidget(CardService.newTextParagraph()
-              .setText(ret.train.number + ' - ' + ret.train.name));
+    .addWidget(CardService.newKeyValue()
+               .setContent(ret.train.number + ' - ' + ret.train.name + '<br>' + 'DOJ : ' + ret.doj)
+              .setMultiline(true)
+              .setOnClickAction(CardService.newAction()
+                                .setFunctionName('submit')
+                                .setParameters({
+                                  mode: 'live',
+                                  inputs: JSON.stringify({
+                                    train: ret.train.number,
+                                    doj: ret.doj,
+                                    station: ret.from_station.code
+                                  })
+                                })));
   var class = CardService.newCardSection()
     .setHeader('Class')
     .addWidget(CardService.newTextParagraph()
@@ -54,5 +58,5 @@ function buildPNRStatusResult(ret) {
     toStation,
     passengers
   );
-  return buildChildCard('PNR Status - ' + e.formInput.pnr, sections);
+  return buildChildCard('PNR Status - ' + ret.pnr, sections);
 }
