@@ -16,3 +16,10 @@ railway-api
 
 4. In the **Install developer add-on** dialog that appears, click the checkbox to
    indicate that you trust this developer, then click **Install**.
+
+## Setup
+1. Open the Settings of Ingenium.
+
+2. Enter the API Key of [RailwayAPI](https://railwayapi.com/) into the Text Field.
+
+3. Click **UPDATE** Button.
