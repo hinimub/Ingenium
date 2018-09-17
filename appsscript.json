@@ -1,0 +1,43 @@
+{
+  "timeZone": "Asia/Calcutta",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "FusionTables",
+      "serviceId": "fusiontables",
+      "version": "v2"
+    }],
+    "libraries": [{
+      "userSymbol": "mustache",
+      "libraryId": "1p8xJOwUjkMS6-zHRCI_vUKgX7dhXdHWGwCoeaOtoeGAlrgC5saASlseo",
+      "version": "1",
+      "developmentMode": true
+    }, {
+      "userSymbol": "indianrail",
+      "libraryId": "13r_vNwILiD4sv3wmrcwQONa5_it7ZzB-6IdYT-5uwqMY-hkPCUWNYrPM",
+      "version": "2"
+    }, {
+      "userSymbol": "railway",
+      "libraryId": "1nXnQ_FqyyLEJ2GBTz2JZmdKNac-WXrzZhNtRQ_XKhPENPBYdv_6GyzXN",
+      "version": "2"
+    }, {
+      "userSymbol": "comprehensive",
+      "libraryId": "16JDnqx0ItLjJkGJkzT7fGHjuZfWB1sbvxUTi7huRuFtyrW3lUtp6FR-v",
+      "version": "2"
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/gmail.addons.execute", "https://www.googleapis.com/auth/fusiontables.readonly", "https://www.googleapis.com/auth/script.external_request"],
+  "gmail": {
+    "name": "Ingenium",
+    "logoUrl": "http://drive.google.com/uc?export\u003dview\u0026id\u003d1j8XYZIXurJE9LCezlfeFITD16aeOmUdb",
+    "contextualTriggers": [{
+      "unconditional": {
+      },
+      "onTriggerFunction": "buildAddOn"
+    }],
+    "primaryColor": "#4285F4",
+    "secondaryColor": "#4285F4",
+    "openLinkUrlPrefixes": ["https://mail.google.com/"],
+    "version": "TRUSTED_TESTER_V2"
+  }
+}
