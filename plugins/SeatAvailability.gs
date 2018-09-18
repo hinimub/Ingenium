@@ -31,8 +31,8 @@ if(!initializers) var initializers = [];
   
   Object.defineProperty(model, 'error', { get: function(){ return this.response.err }});
   
-  Object.defineProperty(model, 'resultsCardTitle', { get: function(){ return
-    this.trainNumber + ' - ' + this.fromStationCode + ' → ' + this.toSationCode + ' ( ' + this.class + ', ' + this.quota + ' )';
+  Object.defineProperty(model, 'resultsCardTitle', { get: function(){
+    return this.trainNumber + ' - ' + this.fromStationCode + ' → ' + this.toStaionCode + ' ( ' + this.class + ', ' + this.quota + ' )';
   }});
   
  /*
@@ -51,15 +51,14 @@ if(!initializers) var initializers = [];
     return ui.Card({'title':'Seat Availability', 'widgets':widgets, 'type':'parent'});
   }
 
-function buildSeatAvailabilityResult (inputs, ret) {
+function buildSeatAvailabilityResult () {
   var sections = model.response.availability.map(function(e){
     var widgets = [ui.TextParagraph({'text':e.status})];
     if(isRegisteredPlugin({'name':'ingenium-plugin-fare-enquiry'}))
       widgets.push(ui.fare({'params':{}}));
     return ui.Section({'title': e.date, 'widgets':widgets});
   });
-  
-  return ui.Card({'title':resultsCardTitle, 'sections':sections, 'type':'child'});
+  return ui.Card({'title':model.resultsCardTitle, 'sections':sections, 'type':'child'});
 }
 
  /*
