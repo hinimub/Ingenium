@@ -1,7 +1,7 @@
 /**
-  *
-  *
-  */
+ * @fileOverview Ingenium plugin to edit the User Properties.
+ *     Need other plugins to add card sections.
+ */
 if(!initializers) var initializers = [];
 
 (function(global){
