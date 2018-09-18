@@ -22,7 +22,9 @@ if(!initializers) var initializers = [];
         'function': function(){
           if(!isRegisteredPlugin({'name':'ingenium-plugin-settings'})) return unregisterPlugin(token);
           var propertyName = 'INGENIUM_API_KEY';
-          var railwayApiKey = userProperties.getCurrentOrSetDefault(propertyName, '');
+          var userProperties = PropertiesService.getUserProperties();
+          var railwayApiKey = userProperties.getProperty(propertyName);
+          if(!railwayApiKey) railwayApiKey = ''
   
           var keyInput =
             ui.TextInput({'name':propertyName, 'text':'API Key', 'value':railwayApiKey});

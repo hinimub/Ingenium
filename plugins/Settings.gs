@@ -52,6 +52,7 @@ if(!initializers) var initializers = [];
   }
   function saveSettings(e){
     var newProperties = e.formInput;
+    var userProperties = PropertiesService.getUserProperties();
     userProperties.setProperties(newProperties);
 
     return ui.Notice({'text':'Updated', 'type':'info'});
