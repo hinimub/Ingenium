@@ -1,5 +1,5 @@
 /**
- * This Plugin add Edit RailwayAPI-key Section to 'ingenium-plugin-settings'
+ * @fileOverview This Plugin add Edit RailwayAPI-key Section to 'ingenium-plugin-settings'
  */
 
 if(!initializers) var initializers = [];
