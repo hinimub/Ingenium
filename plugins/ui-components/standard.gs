@@ -57,6 +57,13 @@ ui.Dropdown = function(options){
   return this.SelectionInput(options);
 };
 
+ui.Navigation = function(options){
+  var newNavigation = CardService.newNavigation();
+  if(options.updateCard) newNavigation.updateCard(options.updateCard);
+  if(options.build === false) return newNavigation;
+  return this.ActionResponse({'navigation':newNavigation});
+};
+
 ui.Notice = ui.Notiofication = function(options){
   var newNotification = CardService.newNotification();
   if(options.type) {
@@ -67,6 +74,7 @@ ui.Notice = ui.Notiofication = function(options){
     }
   } 
   if(options.text) newNotification.setText(options.text);
+  if(options.build === false) return newNotification;
   return this.ActionResponse({'notice':newNotification});
 };
 

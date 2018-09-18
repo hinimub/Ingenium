@@ -15,12 +15,17 @@ if(!initializers) var initializers = [];
   */
   global.initializers.push({
     'function':function(global){
-      var propertyName = 'INGENIUM_API_KEY';
       var token = registerPlugin(pluginInfo);
-      
-      function getRailwayApiKey(){
+
+      function settingsSectionBuilder(){
+        var propertyName = 'INGENIUM_API_KEY';
         var userProperties = PropertiesService.getUserProperties();
-        return userProperties.getProperty(propertyName);
+        var railwayApiKey = userProperties.getProperty(propertyName);
+        if(!railwayApiKey) railwayApiKey = ''
+  
+          var keyInput =
+            ui.TextInput({'name':propertyName, 'text':'API Key', 'value':railwayApiKey});
+          return ui.Section({'title':'RailwayAPI', 'widgets':keyInput});
       }
 
       //Will Run After Registerd All Plugins
@@ -28,13 +33,7 @@ if(!initializers) var initializers = [];
         'function': function(){
           if(!isRegisteredPlugin({'name':'ingenium-plugin-settings'})) return unregisterPlugin(token);
           
-          var railwayApiKey = getRailwayApiKey();
-          if(!railwayApiKey) railwayApiKey = ''
-  
-          var keyInput =
-            ui.TextInput({'name':propertyName, 'text':'API Key', 'value':railwayApiKey});
-          var section = ui.Section({'title':'RailwayAPI', 'widgets':keyInput});
-          addSettingsSection(section);
+          addSettingsSectionBuilder(settingsSectionBuilder);
         }
       });
     },
