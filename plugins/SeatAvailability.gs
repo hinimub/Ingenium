@@ -68,12 +68,17 @@ function buildSeatAvailabilityResult (inputs, ret) {
   function getSeatAvailability(event){
     model.inputs = getParametersFromEvent(event);
     model.response = function(train, from, to, date, pref, quota){
+      var userProperties = PropertiesService.getUserProperties();
       var railwayApiKey = userProperties.getProperty('INGENIUM_API_KEY');
       railway.setApiKey(railwayApiKey);
+      
       return railway.seatAvailability(train, from, to, date, pref, quota);
+      
     }(model.trainNumber, model.fromStationCode, model.toStationCode, model.date, model.class, model.quota);
+    
     if(model.error) return ui.Card({'title':'Seat Availability', 'text':model.error, 'type':'error'});
     model.response = model.response.res;
+    
     return buildSeatAvailabilityResult();
   }
   

@@ -6,7 +6,7 @@ if(!initializers) var initializers = [];
 (function(global){
   'use strict';
   var pluginInfo = {
-    'name':'ingenium-plugin-railwayapi',
+    'name':'ingenium-plugin-settings-railwayapi',
     'version':1.0,
     'entryPoint':'doNothing'
   };
@@ -15,15 +15,20 @@ if(!initializers) var initializers = [];
   */
   global.initializers.push({
     'function':function(global){
+      var propertyName = 'INGENIUM_API_KEY';
       var token = registerPlugin(pluginInfo);
+      
+      function getRailwayApiKey(){
+        var userProperties = PropertiesService.getUserProperties();
+        return userProperties.getProperty(propertyName);
+      }
 
       //Will Run After Registerd All Plugins
       global.initializers.push({
         'function': function(){
           if(!isRegisteredPlugin({'name':'ingenium-plugin-settings'})) return unregisterPlugin(token);
-          var propertyName = 'INGENIUM_API_KEY';
-          var userProperties = PropertiesService.getUserProperties();
-          var railwayApiKey = userProperties.getProperty(propertyName);
+          
+          var railwayApiKey = getRailwayApiKey();
           if(!railwayApiKey) railwayApiKey = ''
   
           var keyInput =
